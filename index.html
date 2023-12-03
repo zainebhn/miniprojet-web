@@ -3,9 +3,42 @@
     <head>
         <title>Accueil</title>
     </head>
+	<style>
+	a {
+  color:DarkSlateGrey;           /* Couleur du texte en blanc */
+  
+  text-decoration: none;   /* Supprimer le soulignement par défaut du lien */
+}
+a:visited {
+  color: purple;
+}
+a:hover {
+  color: hotpink;
+}
+a:active {
+  color: grey;
+}
+	.image-container {
+      background-color: DarkSlateGrey; 
+      padding: 20px; /* Add padding for better visibility of the background color */
+    }
+	.positioned-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+	h1{
+      color: white; /* Couleur du texte en blanc */
+      text-decoration: underline; /* Ajout du soulignement */
+    }
+	img {
+  border-radius: 50%;
+}
+	</style>
 <body>
-<div>
-	<img src="zaineb.jpg" width="22%"  height="280px"  >
+<div class="image-container" >
+	<img src="zaineb.jpg" width="22%"  height="280px" >
 	<hr>
 	<h1>Heni Zaineb </h1>
 	</hr>
