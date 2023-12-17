@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title> Formulaire</title>
+    </head>
+	<style>
+	a {
+  color:DarkSlateGrey;           /* Couleur du texte en blanc */
+  
+  text-decoration: none;   /* Supprimer le soulignement par défaut du lien */
+}
+a:visited {
+  color: purple;
+}
+a:hover {
+  color: hotpink;
+}
+a:active {
+  color: grey;
+}
+h1 {
+  font-size: 24px; /* Taille du texte */
+}
+
+.green-background {
+  background-color: DarkSlateGrey; /* Couleur de fond en vert */
+  padding: 5px; /* Ajouter un espacement interne pour le texte */
+  color: white; /* Couleur du texte en blanc */
+}
+h4 {
+  font-family: Arial, sans-serif;  /* Utiliser la police Arial ou une police sans-serif similaire */
+  font-size: 16px;  /* Taille du texte */
+  color: black;  /* Couleur du texte (par exemple, noir ou une couleur sombre) */
+  margin-bottom: 10px;  /* Marge inférieure pour l'espace entre les champs de texte */
+}
+*{
+    box-sizing: border-box;
+}
+.form button{
+    background: var(--color-first);
+    border: 2px solid var(--color-first);
+    color: black;
+    display:block;
+    border-radius: 4px;
+    padding: 10px;
+    width:100%;
+
+}
+.form-control.success input{
+    border-color: var(--color-success);
+}
+
+.form-control.error input{
+    border-color: var(--color-error);
+}
+.form-control.error small{
+    border-color: var(--color-error);
+    visibility:visible;
+}
+.form{
+    padding: 30px 40px;
+
+}
+.form-control{
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+.form-control label{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.form-control small {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: red; 
+    visibility: hidden;
+}
+	</style>
+ <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector("#form");
+            const username1 = document.querySelector("#username1");
+            const username2 = document.querySelector("#username2");
+            const email = document.querySelector("#email");
+            const phoneNumber = document.querySelector("#phoneNumber");
+            const appointmentDate = document.querySelector("#appointmentDate");
+            const message = document.querySelector("#message");
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                form_verify();
+            });
+
+            function form_verify() {
+                const username1Value = username1.value.trim();
+                const username2Value = username2.value.trim();
+                const emailValue = email.value.trim();
+                const phoneNumberValue = phoneNumber.value.trim();
+                const appointmentDateValue = appointmentDate.value.trim();
+                const messageValue = message.value.trim();
+
+                // Contrôle de saisie pour le champ de nom
+                if (username1Value === "") {
+                    setError(username1, "Donnez votre nom");
+                } else {
+                    setSuccess(username1);
+                }
+
+                // Contrôle de saisie pour le champ de prénom
+                if (username2Value === "") {
+                    setError(username2, "Donnez votre prénom");
+                } else {
+                    setSuccess(username2);
+                }
+
+                // Contrôle de saisie pour le champ d'email
+                if (emailValue === "") {
+                    setError(email, "Entrez votre Email");
+                } else if (!email_verify(emailValue)) {
+                    setError(email, "Email non valide");
+                } else {
+                    setSuccess(email);
+                }
+
+                // Contrôle de saisie pour le champ de numéro de téléphone
+                if (phoneNumberValue === "") {
+                    setError(phoneNumber, "Donnez votre numéro de téléphone");
+                } else if (!phoneNumberValue.match(/^\d{8}$/)) {
+                    setError(phoneNumber, "Veuillez entrer un numéro de téléphone valide (8 chiffres)");
+                } else {
+                    setSuccess(phoneNumber);
+                }
+
+                // Contrôle de saisie pour le champ de date
+                if (appointmentDateValue === "") {
+                    setError(appointmentDate, "Donnez la Date");
+                } else {
+                    setSuccess(appointmentDate);
+                }
+
+                // Contrôle de saisie pour le champ de message
+                if (messageValue === "") {
+                    setError(message, "Ecrivez votre message");
+                } else {
+                    setSuccess(message);
+                }
+            }
+
+            function setError(elem, message) {
+                const formControl = elem.parentElement;
+                const small = formControl.querySelector('.error-message');
+
+                small.innerText = message;
+                formControl.className = 'form-control error';
+            }
+
+            function setSuccess(elem) {
+                const formControl = elem.parentElement;
+                formControl.className = 'form-control success';
+            }
+
+            function email_verify(email) {
+                return /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/.test(email);
+            }
+        });
+    </script>
+	<body>
+	<div>
+        <a href="index.html"> Accueil</a> 
+		<a href="cv2.html"> Education </a>
+         <a href="cv3.html"> Experiences</a>
+		 <a href="cv4.html"> Profil</a>
+		 <a href="cv5.html"> Formulaire</a>
+	</div>
+	<div class ="container">
+	<form id="form" action="/">
+	
+	<hr>
+	<h1 class="green-background"> Inscription: </h1>
+	</hr>
+	<div class="input-control">
+	<label for="username1"> Nom:</label>
+	<input id ="username1" nom="username1" type ="text">
+	<div class ="error"</div>
+	</div>
+	<div class="input-control">
+	<label for="username2"> Prenom:</label>
+	<input id ="username2" nom="username2" type ="text">
+	<div class ="error"</div>
+	</div>
+	<div class="input-control">
+	<label for="email"> Email:</label>
+	<input id ="email" nom="username" type ="text">
+	<div class ="error"</div>
+	</div>
+	<div class="form-control">
+                <label for="phoneNumber">Numéro de tél:</label>
+                <input type="text" id="phoneNumber" placeholder="Entrez votre numéro de téléphone">
+                <small class="error-message" id="phoneError"> Donner votre num de téléphone!</small>
+            </div>
+
+            <div class="form-control">
+                <label for="appointmentDate">Date:</label>
+                <input type="date" id="appointmentDate">
+                <small class="error-message" id="dateError">Remplir la date! </small>
+            </div>
+
+            <div class="form-control">
+                <label for="message">Message:</label>
+                <textarea id="message" placeholder="Entrez votre message"></textarea>
+                <small class="error-message" id="messageError">Ecrire votre message!</small>
+            </div>
+
+            <button type="submit">Enregistrer</button>
+        </form>
+    </div>
+	</div>
+	</form>
+	</div>
+	</body>
+</html>
+	
